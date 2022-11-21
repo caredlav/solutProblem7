@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="icon" href="/img/icon.png">
+    <title>Formulario de tareas</title>
+</head>
+<body>
+    <header>
+        <h1>Formulario para crear tareas</h1>
+    </header>
+    <main>
+        <form action="/" method="post">
+            <div class="form-container">
+                <label for="taskName">Nombre de la tarea</label>
+                <input type="text" name="taskName">
+                <label for="taskDate">Fecha de la tarea</label>
+                <input type="date" name="taskDate" class="input-date">
+                <label for="priority">Prioridad</label>
+                <input type="text" name="priority">
+                <label for="description">Descripción</label>
+                <textarea name="description"></textarea>
+                <div class="button-container">
+                    <button type="submit">Cargar</button>
+                    <button type="reset">Limpiar campos</button>
+                </div>
+            </div>
+        </form>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Prioridad</th>
+                    <th>Descripción</th>
+                    <th>Editar</th>
+                    <th>Borrar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (tasks!=null) { %>
+                 <% tasks.forEach(task => { %>
+                 <tr>
+                    <td><%= task.task_name %></td>
+                    <td><%= task.task_date %></td>
+                    <td><%= task.priority %></td>
+                    <td><%= task.description %></td>
+                    <td><a href="/update/<%= task.id %>" class="icon-pencil"><i
+                        class="fas fa-pencil-alt"></i></a></td>
+                    <td><form action="/delete/<%= task.id %>?_method=DELETE" method="POST">
+                        <button type="submit"><i class="fas fa-trash-alt"></i></button>
+                    </form></td>
+                 </tr>
+                <% }) %>
+                <% }else{ %>
+                    <h4>Nada en base de datos.</h4>
+                <% } %> 
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <label>Creado por Carlos Lavado</label>
+    </footer>
+</body>
+</html>

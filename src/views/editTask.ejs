@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" href="/img/icon.png">
+    <title>Editando tarea</title>
+</head>
+<body>
+    <header>
+        <h2>Edición de tarea</h2>
+    </header>
+    <main>
+        <a href="/" class="back">Volver</a>
+        <form action="/update/<%= task.id %>/?_method=PUT" method="post">
+            <div class="form-container">
+                <label for="taskName">Nombre de la tarea</label>
+                <input type="text" name="taskName" value="<%= task.task_name %>">
+                <label for="taskDate">Fecha de la tarea</label>
+                <input type="date" name="taskDate" value="<%= task.task_date %>" class="input-date">
+                <label for="priority">Prioridad</label>
+                <input type="text" name="priority" value="<%= task.priority %>">
+                <label for="description">Descripción</label>
+                <textarea name="description"><%= task.description %></textarea>
+                <button type="submit">Actualizar</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <label>Creado por Carlos Lavado</label>
+    </footer>
+</body>
+</html>
